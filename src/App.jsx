@@ -264,7 +264,7 @@ const App = () => {
     Our Products
     </h1>
     <div className="flex gap-8 flex-wrap justify-center ">
-      {productsArr.map((elem)=><ProductCard details={elem} removeProduct={removeProduct} key={elem.id}/>)}
+      {productsArr.length !== 0?productsArr.map((elem)=><ProductCard details={elem} removeProduct={removeProduct} key={elem.id}/>):<h3 className="text-2xl text-gray-500 weight-light">No products available</h3>}
     </div>
     </>: loginPage? <Login setLoginPage={setLoginPage} setIsClicked={setIsClicked}/>:
     <Signup setLoginPage={setLoginPage} setIsClicked={setIsClicked} />}
