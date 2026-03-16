@@ -1,5 +1,7 @@
 import { useState } from "react"
 import ProductCard from "./components/ProductCard"
+import Login from "./components/Login"
+import Signup from "./components/Signup"
 
 const App = () => {
   let [productsArr,setProductsArr] = useState([
@@ -249,15 +251,26 @@ const App = () => {
     let updatedProducts = productsArr.filter((elem)=> elem.id!== id)
     setProductsArr(updatedProducts)
   }
+  
+  let [loginPage, setLoginPage] = useState(true)
+  let [isClicked, setIsClicked] = useState(false)
+  
 
   return (
+ 
     <div className=" w-full min-h-screen flex flex-col items-center bg-slate-50 ">
-    <h1 className="font-bebas text-4xl py-10">
+    {isClicked? <>
+     <h1 className="font-bebas text-4xl py-10">
     Our Products
     </h1>
     <div className="flex gap-8 flex-wrap justify-center ">
       {productsArr.map((elem)=><ProductCard details={elem} removeProduct={removeProduct} key={elem.id}/>)}
     </div>
+    </>: loginPage? <Login setLoginPage={setLoginPage} setIsClicked={setIsClicked}/>:
+    <Signup setLoginPage={setLoginPage} setIsClicked={setIsClicked} />}
+   
+   
+   
     </div>
   )
 }
